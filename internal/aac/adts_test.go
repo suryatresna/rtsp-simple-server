@@ -16,9 +16,10 @@ var casesADTS = []struct {
 		[]byte{0xff, 0xf1, 0xc, 0x80, 0x1, 0x3c, 0x20, 0xaa, 0xbb},
 		[]*ADTSPacket{
 			{
+				Type:         1,
 				SampleRate:   48000,
 				ChannelCount: 2,
-				Frame:        []byte{0xaa, 0xbb},
+				AU:           []byte{0xaa, 0xbb},
 			},
 		},
 	},
@@ -27,14 +28,16 @@ var casesADTS = []struct {
 		[]byte{0xff, 0xf1, 0x10, 0x40, 0x1, 0x3c, 0x20, 0xaa, 0xbb, 0xff, 0xf1, 0xc, 0x80, 0x1, 0x3c, 0x20, 0xcc, 0xdd},
 		[]*ADTSPacket{
 			{
+				Type:         1,
 				SampleRate:   44100,
 				ChannelCount: 1,
-				Frame:        []byte{0xaa, 0xbb},
+				AU:           []byte{0xaa, 0xbb},
 			},
 			{
+				Type:         1,
 				SampleRate:   48000,
 				ChannelCount: 2,
-				Frame:        []byte{0xcc, 0xdd},
+				AU:           []byte{0xcc, 0xdd},
 			},
 		},
 	},

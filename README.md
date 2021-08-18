@@ -19,7 +19,7 @@ Features:
 
 * Publish live streams with RTSP (UDP, TCP or TLS mode) or RTMP
 * Read live streams with RTSP (UDP, UDP-multicast, TCP or TLS mode), RTMP or HLS
-* Pull and serve streams from other RTSP or RTMP servers or cameras, always or on-demand (RTSP proxy)
+* Proxy mode: Pull and serve streams from other RTSP, RTMP or HLS servers or cameras, always or on-demand
 * Each stream can have multiple video and audio tracks, encoded with any codec, including H264, H265, VP8, VP9, MPEG2, MP3, AAC, Opus, PCM, JPEG
 * Streams are automatically converted from a protocol to another. For instance, it's possible to publish with RTSP and read with HLS
 

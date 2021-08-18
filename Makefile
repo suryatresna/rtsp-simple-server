@@ -128,6 +128,7 @@ define CONFIG_RUN
 #rtcpAddress: :8003
 #metrics: yes
 #pprof: yes
+logLevel: debug
 
 paths:
   all:
@@ -136,8 +137,9 @@ paths:
 #    readPass: tast
 #    runOnDemand: ffmpeg -re -stream_loop -1 -i testimages/ffmpeg/emptyvideo.mkv -c copy -f rtsp rtsp://localhost:$$RTSP_PORT/$$RTSP_PATH
 
-#  proxied:
-#    source: rtsp://192.168.2.198:554/stream
+  proxied:
+#    source: http://localhost:8080/stream.m3u8
+    source: https://moctobpltc-i.akamaihd.net/hls/live/571329/eight/playlist.m3u8
 #    sourceProtocol: tcp
 #    sourceOnDemand: yes
 #    runOnDemand: ffmpeg -i rtsp://192.168.2.198:554/stream -c copy -f rtsp rtsp://localhost:$$RTSP_PORT/proxied2
