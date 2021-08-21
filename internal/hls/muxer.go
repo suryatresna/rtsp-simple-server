@@ -123,7 +123,7 @@ func (m *Muxer) WriteH264(pts time.Duration, nalus [][]byte) error {
 	pts = pts + ptsOffset - m.startPTS
 
 	err := m.currentSegment.writeH264(
-		m.videoDTSEst.Feed(pts),
+		m.videoDTSEst.Feed(idrPresent, pts),
 		pts,
 		idrPresent,
 		nalus)
