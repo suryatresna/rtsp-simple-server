@@ -8,7 +8,7 @@ import (
 )
 
 func TestDTSEstimator(t *testing.T) {
-	est := NewDTSEstimator()
+	est := NewDTSEstimator(0)
 
 	dts := est.Feed(false, 2*time.Second)
 	require.Equal(t, time.Millisecond, dts)

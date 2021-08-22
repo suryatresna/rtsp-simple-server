@@ -13,15 +13,25 @@ type DTSEstimator struct {
 }
 
 // NewDTSEstimator allocates a DTSEstimator.
-func NewDTSEstimator() *DTSEstimator {
+func NewDTSEstimator(initialValue time.Duration) *DTSEstimator {
 	return &DTSEstimator{
 		initializing: 2,
+		prevDTS:      initialValue - time.Millisecond,
 	}
 }
 
 // Feed provides PTS to the estimator, and returns the estimated DTS.
 func (d *DTSEstimator) Feed(idrPresent bool, pts time.Duration) time.Duration {
-	if d.initializing > 0 {
+	switch d.initializing {
+	case 2:
+		d.initializing--
+		dts := d.prevDTS
+		d.prevPrevPTS = d.prevPTS
+		d.prevPTS = pts
+		d.prevDTS = dts
+		return dts
+
+	case 1:
 		d.initializing--
 		dts := d.prevDTS + time.Millisecond
 		d.prevPrevPTS = d.prevPTS

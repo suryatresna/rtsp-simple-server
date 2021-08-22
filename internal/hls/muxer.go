@@ -11,9 +11,7 @@ import (
 )
 
 const (
-	// an offset is needed to
-	// - avoid negative PTS values
-	// - avoid PTS < DTS during startup
+	// an offset is needed to avoid PCR > PTS during startup
 	ptsOffset = 2 * time.Second
 
 	segmentMinAUCount = 100
@@ -75,7 +73,6 @@ func NewMuxer(
 		h264SPS:            h264SPS,
 		h264PPS:            h264PPS,
 		aacConfig:          aacConfig,
-		videoDTSEst:        h264.NewDTSEstimator(),
 		currentSegment:     newSegment(videoTrack, audioTrack, h264SPS, h264PPS),
 		primaryPlaylist:    newPrimaryPlaylist(videoTrack, audioTrack, h264SPS, h264PPS),
 		streamPlaylist:     newStreamPlaylist(hlsSegmentCount),
@@ -118,6 +115,7 @@ func (m *Muxer) WriteH264(pts time.Duration, nalus [][]byte) error {
 		m.startPCR = time.Now()
 		m.startPTS = pts
 		m.currentSegment.setStartPCR(m.startPCR)
+		m.videoDTSEst = h264.NewDTSEstimator(pts)
 	}
 
 	pts = pts + ptsOffset - m.startPTS
