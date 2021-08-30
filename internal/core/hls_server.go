@@ -196,7 +196,8 @@ func (s *hlsServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 					return
 				}
 
-				_, err = w.Write(buf[:n])
+				bufN := buf[:n]
+				_, err = w.Write(bufN)
 				if err != nil {
 					return
 				}

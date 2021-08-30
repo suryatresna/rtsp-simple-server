@@ -1,0 +1,49 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rtsp-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: rtsp-app
+  ports:
+    - name: rstp
+      protocol: TCP
+      port: 8554
+      targetPort: 8554
+    - name: hls
+      protocol: TCP
+      port: 8888
+      targetPort: 8888
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtsp-app
+  labels:
+    app: rtsp-app
+spec:
+  selector:
+    matchLabels:
+      app: rtsp-app
+  template:
+    metadata:
+      labels:
+        app: rtsp-app
+    spec:
+      containers:
+      - name: rtsp-app
+        image: rtsp-app
+        env:
+        - name: RTSP_PROTOCOLS
+          value: "tcp"
+        ports:
+        - containerPort: 1935
+          name: rtmp-server
+        - containerPort: 8888
+          name: hls-server
+        - containerPort: 8554
+          name: rtsp-server
+        - containerPort: 9998
+          name: metrics-server

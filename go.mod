@@ -7,12 +7,14 @@ require (
 	github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d // indirect
 	github.com/aler9/gortsplib v0.0.0-20210825171651-d744a2e0d3c4
 	github.com/asticode/go-astits v1.9.0
+	github.com/aws/aws-sdk-go v1.40.32
 	github.com/fsnotify/fsnotify v1.4.9
 	github.com/gin-gonic/gin v1.7.2
 	github.com/gookit/color v1.4.2
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
 	github.com/notedit/rtmp v0.0.2
 	github.com/pion/rtp v1.6.2
+	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.6.1
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6

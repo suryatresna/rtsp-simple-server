@@ -3,7 +3,7 @@
 # General parameters
 
 # sets the verbosity of the program; available values are "warn", "info", "debug".
-logLevel: info
+logLevel: debug
 # destinations of log messages; available values are "stdout", "file" and "syslog".
 logDestinations: [stdout]
 # if "file" is in logDestinations, this is the file which will receive the logs.
@@ -19,12 +19,12 @@ writeTimeout: 10s
 readBufferCount: 512
 
 # enable the HTTP API.
-api: no
+api: yes
 # address of the API listener.
 apiAddress: 127.0.0.1:9997
 
 # enable Prometheus-compatible metrics.
-metrics: no
+metrics: yes
 # address of the metrics listener.
 metricsAddress: 127.0.0.1:9998
 
@@ -38,7 +38,7 @@ pprofAddress: 127.0.0.1:9999
 # the server port is available in the RTSP_PORT variable.
 runOnConnect:
 # the restart parameter allows to restart the command if it exits suddenly.
-runOnConnectRestart: no
+runOnConnectRestart: yes
 
 ###############################################
 # RTSP parameters
@@ -100,7 +100,7 @@ hlsDisable: no
 hlsAddress: :8888
 # by default, HLS is generated only when requested by a user;
 # this option allows to generate it always, avoiding an initial delay.
-hlsAlwaysRemux: no
+hlsAlwaysRemux: yes
 # number of HLS segments to generate.
 # increasing segments allows more buffering,
 # decreasing segments decreases latency.
@@ -228,3 +228,15 @@ paths:
     runOnRead:
     # the restart parameter allows to restart the command if it exits suddenly.
     runOnReadRestart: no
+
+
+################################################
+#  AWS S3 Credential
+s3upload:
+  s3bucket: s3.weast.asia
+  s3region: asia
+  s3uploadTimeOut: 60
+  s3GrantReadUploadFiles: true
+  awsCredentialID: awsid123
+  awsSecret: loremipsumsecret
+  isValid: true
